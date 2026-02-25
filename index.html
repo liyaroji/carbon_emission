@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="CarbonDecode - Smart carbon emission tracking and sustainability analytics platform.">
+    <title>CarbonDecode | Measure. Reduce. Sustain.</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-mode">
+
+    <!-- Glitch Intro Screen -->
+    <div id="intro-screen">
+        <h1 class="glitch" data-text="CarbonDecode">CarbonDecode</h1>
+        <div class="subtitle-glitch">Initializing Analytics Engine...</div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar hidden-auth">
+        <div class="logo">
+            <i data-lucide="cpu" class="icon-lime"></i>
+        </div>
+        <ul class="nav-links">
+            <li><button class="nav-btn active" data-target="home" title="Home"><i data-lucide="home"></i></button></li>
+            <li><button class="nav-btn auth-req" data-target="data-entry" title="Telemetry Input"><i
+                        data-lucide="database"></i></button></li>
+            <li><button class="nav-btn auth-req" data-target="dashboard" title="Dashboard"><i
+                        data-lucide="layout-dashboard"></i></button></li>
+            <li><button class="nav-btn auth-req" data-target="anomalies" title="Anomalies & Audit"><i
+                        data-lucide="alert-triangle"></i></button></li>
+            <li><button class="nav-btn auth-req" data-target="goals" title="Sustainability Goals"><i
+                        data-lucide="crosshairs"></i></button></li>
+            <li><button class="nav-btn auth-req" data-target="scenarios" title="What-If Scenarios"><i
+                        data-lucide="git-branch"></i></button></li>
+            <li><button class="nav-btn auth-req" data-target="reports" title="Reports & Export"><i
+                        data-lucide="file-bar-chart"></i></button></li>
+            <li><button class="nav-btn" data-target="about" title="About"><i data-lucide="info"></i></button></li>
+        </ul>
+        <div class="user-profile">
+            <button class="nav-btn" onclick="toggleTheme()" title="Toggle Theme"><i data-lucide="moon"></i></button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+        <!-- Top Navigation -->
+        <header class="top-nav">
+            <div class="top-nav-left">
+                <h3 id="page-title" class="brand-text">CarbonDecode</h3>
+            </div>
+            <div class="top-nav-right" id="nav-auth-buttons">
+                <button class="btn btn-secondary btn-sm" onclick="navigateTo('signin')">Sign In</button>
+                <button class="btn btn-primary btn-sm glow-lime" onclick="navigateTo('signup')">Get Started</button>
+            </div>
+            <div class="top-nav-right hidden" id="nav-user-menu">
+                <div class="badge glow-lime-text">Pro Plan</div>
+                <button class="btn btn-secondary btn-sm" onclick="signOut()">Sign Out</button>
+            </div>
+        </header>
+
+        <!-- ================= HOME / LANDING PAGE ================= -->
+        <section id="home" class="page-section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1>DECODE YOUR<br>IMPACT</h1>
+                    <p class="tagline">Measure. Reduce. Sustain.</p>
+                    <p class="hero-desc">The AI-powered carbon tracking platform for tomorrow's businesses and colleges.
+                    </p>
+                    <div style="margin-top:2rem; display:flex; gap:1rem;">
+                        <button class="btn btn-primary cta-btn glow-lime" onclick="navigateTo('signup')">Get
+                            Started</button>
+                        <button class="btn btn-secondary cta-btn" onclick="navigateTo('about')">Learn More</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <i data-lucide="scan-line" class="huge-icon icon-lime pulse-anim"></i>
+                </div>
+            </div>
+
+            <div class="bento-grid home-bento neo-brutalist">
+                <!-- How it works -->
+                <div class="card bento-card card-span-12 br-card">
+                    <div class="card-header"><i data-lucide="git-commit" class="icon-orange"></i>
+                        <h3>How It Works</h3>
+                    </div>
+                    <div class="how-it-works-grid">
+                        <div class="step">
+                            <div class="step-icon border-lime"><i data-lucide="keyboard"></i></div>
+                            <h4>1. Input</h4>
+                            <p>Connect APIs or manually enter your utility and operational data.</p>
+                        </div>
+                        <i data-lucide="arrow-right" class="step-arrow icon-orange"></i>
+                        <div class="step">
+                            <div class="step-icon border-lime"><i data-lucide="cpu"></i></div>
+                            <h4>2. Calculate</h4>
+                            <p>Real-time ESG-standardized emission calculations.</p>
+                        </div>
+                        <i data-lucide="arrow-right" class="step-arrow icon-orange"></i>
+                        <div class="step">
+                            <div class="step-icon border-lime"><i data-lucide="bar-chart-2"></i></div>
+                            <h4>3. Analyze</h4>
+                            <p>AI-driven anomaly detection and regression forecasts.</p>
+                        </div>
+                        <i data-lucide="arrow-right" class="step-arrow icon-orange"></i>
+                        <div class="step">
+                            <div class="step-icon border-lime glow-lime"><i data-lucide="leaf"></i></div>
+                            <h4>4. Reduce</h4>
+                            <p>Implement smart suggestions and track impact down to zero.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonials -->
+                <div class="card bento-card card-span-6 br-card">
+                    <div class="card-header"><i data-lucide="message-square" class="icon-lime"></i>
+                        <h3>Testimonials</h3>
+                    </div>
+                    <div class="testimonial">
+                        <p>"CarbonDecode completely transformed how our campus tracks energy. The gamified dashboard got
+                            everyone engaged!"</p>
+                        <strong>- Sarah J., Sustainability Director</strong>
+                    </div>
+                </div>
+
+                <!-- Feature Highlights -->
+                <div class="card bento-card card-span-6 br-card highlight-br">
+                    <div class="card-header"><i data-lucide="zap" class="icon-lime"></i>
+                        <h3>Platform Highlights</h3>
+                    </div>
+                    <ul class="tech-list">
+                        <li><strong>AI Forecasts:</strong> Regression-based path to net-zero.</li>
+                        <li><strong>What-If Scenarios:</strong> Simulate reductions before acting.</li>
+                        <li><strong>Smart Alerts:</strong> Notifications on threshold breaches.</li>
+                        <li><strong>Gamification:</strong> Earn ESG badges for hitting milestones.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SIGN IN PAGE ================= -->
+        <section id="signin" class="page-section hidden">
+            <div class="flex-center full-height">
+                <div class="card bento-card auth-card neo-brutalist br-card">
+                    <div class="flex-center" style="margin-bottom: 2rem;">
+                        <i data-lucide="fingerprint" class="icon-lime auth-icon pulse-anim"></i>
+                        <h2>Authenticate</h2>
+                        <p>Secure login to your analytics dashboard.</p>
+                    </div>
+                    <form id="signin-form" onsubmit="handleAuth(event)"
+                        style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <input type="email" id="login-email" class="input-capsule"
+                                placeholder="admin@carbondecode.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Password</label>
+                            <input type="password" id="login-password" class="input-capsule" placeholder="••••••••"
+                                required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large btn-full glow-lime">Initialize
+                            Session</button>
+
+                        <div class="divider"><span>OR</span></div>
+
+                        <button type="button" class="btn btn-secondary btn-full"><i data-lucide="chrome"></i> Continue
+                            with Google</button>
+                    </form>
+                    <p class="auth-footer">
+                        New system user? <span class="link-text" onclick="navigateTo('signup')">Provision an
+                            account</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SIGN UP PAGE ================= -->
+        <section id="signup" class="page-section hidden">
+            <div class="flex-center full-height">
+                <div class="card bento-card auth-card neo-brutalist br-card highlight-br">
+                    <div class="flex-center" style="margin-bottom: 2rem;">
+                        <i data-lucide="user-plus" class="icon-lime auth-icon"></i>
+                        <h2>Provision Account</h2>
+                        <p>Join the movement towards net-zero.</p>
+                    </div>
+                    <form id="signup-form" onsubmit="handleAuth(event)"
+                        style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div class="input-group">
+                            <label>Organization Name</label>
+                            <input type="text" class="input-capsule" placeholder="Acme Corp" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <input type="email" class="input-capsule" placeholder="admin@acme.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Password</label>
+                            <input type="password" class="input-capsule" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large btn-full glow-lime">Deploy
+                            Analytics</button>
+                    </form>
+                    <p class="auth-footer">
+                        Existing user? <span class="link-text" onclick="navigateTo('signin')">Access Dashboard</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= DATA ENTRY PAGE ================= -->
+        <section id="data-entry" class="page-section hidden">
+            <div class="bento-grid">
+                <!-- Live Data Input Panel -->
+                <div class="card bento-card card-span-12 input-panel neo-brutalist">
+                    <div class="card-header">
+                        <i data-lucide="activity" class="icon-lime"></i>
+                        <h3>Telemetry Input</h3>
+                        <div class="time-toggle ml-auto">
+                            <button class="toggle-btn active">Monthly</button>
+                            <button class="toggle-btn">Yearly</button>
+                        </div>
+                    </div>
+
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label><i data-lucide="zap" class="icon-lime"></i> Electricity (kWh)</label>
+                            <input type="number" id="inp-elec" class="input-capsule" value="2500"
+                                oninput="liveCalculate()">
+                        </div>
+                        <div class="input-group">
+                            <label><i data-lucide="fuel" class="icon-orange"></i> Fuel (Liters)</label>
+                            <input type="number" id="inp-fuel" class="input-capsule" value="400"
+                                oninput="liveCalculate()">
+                        </div>
+                        <div class="input-group">
+                            <label><i data-lucide="plane" class="icon-white"></i> Travel (km)</label>
+                            <input type="number" id="inp-travel" class="input-capsule" value="1200"
+                                oninput="liveCalculate()">
+                        </div>
+                        <div class="input-group">
+                            <label><i data-lucide="trash-2" class="icon-text"></i> Waste (kg)</label>
+                            <input type="number" id="inp-waste" class="input-capsule" value="350"
+                                oninput="liveCalculate()">
+                        </div>
+                        <div class="input-group">
+                            <label><i data-lucide="droplets" class="icon-teal"></i> Water (L)</label>
+                            <input type="number" id="inp-water" class="input-capsule" value="5000"
+                                oninput="liveCalculate()">
+                        </div>
+                    </div>
+
+                    <div class="flex-center mt-2">
+                        <button type="button" class="btn btn-primary btn-large glow-lime"
+                            onclick="navigateTo('dashboard')">Update & View Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= DASHBOARD PAGE ================= -->
+        <section id="dashboard" class="page-section hidden">
+
+            <div class="dashboard-header-stats">
+                <div class="card stat-card">
+                    <div class="stat-icon"><i data-lucide="cloud-fog" class="icon-lime"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Emissions</span>
+                        <div class="stat-value"><span id="dash-total" class="counter">0</span> <span class="unit">kg
+                                CO₂</span></div>
+                    </div>
+                </div>
+                <div class="card stat-card glow-border-lime">
+                    <div class="stat-icon border-lime"><span class="grade-letter" id="dash-grade">A</span></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Sustainability Score</span>
+                        <div class="stat-value"><span id="dash-score">92</span><span class="unit">/100</span></div>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i data-lucide="target" class="icon-orange"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Net-Zero Target</span>
+                        <div class="stat-value countdown-timer">1450 <span class="unit">Days Left</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-grid dashboard-bento">
+
+                <!-- Main Charts -->
+                <div class="card bento-card card-span-8">
+                    <div class="card-header">
+                        <i data-lucide="bar-chart" class="icon-lime"></i>
+                        <h3>Historical Trends</h3>
+                    </div>
+                    <div class="chart-container-large">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Breakdown -->
+                <div class="card bento-card card-span-4">
+                    <div class="card-header">
+                        <i data-lucide="pie-chart" class="icon-orange"></i>
+                        <h3>Breakdown</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                    <div class="capsule-bars mt-1" id="capsule-container">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- AI Insights & Anomaly Detection -->
+                <div class="card bento-card card-span-6 neo-brutalist br-card glow-border-lime">
+                    <div class="card-header">
+                        <i data-lucide="brain-circuit" class="icon-lime pulse-anim"></i>
+                        <h3>AI Nexus</h3>
+                    </div>
+                    <ul class="insight-list">
+                        <li><strong><i data-lucide="alert-circle" class="icon-orange"></i> Anomaly Detected:</strong>
+                            15% unexplained spike in weekend electricity usage.</li>
+                        <li><strong><i data-lucide="trending-down" class="icon-lime"></i> AI Forecast:</strong>
+                            Regression model predicts a 4% drop next month based on recent HVAC optimizations.</li>
+                        <li><strong><i data-lucide="lightbulb" class="icon-white"></i> Suggestion:</strong> Shift heavy
+                            server compute to off-peak hours (1AM-5AM) to save ~120 kg CO₂.</li>
+                    </ul>
+                </div>
+
+                <!-- Impact & Offsets -->
+                <div class="card bento-card card-span-6">
+                    <div class="card-header">
+                        <i data-lucide="globe-2" class="icon-lime"></i>
+                        <h3>Impact Equivalence & Routing</h3>
+                    </div>
+                    <div class="impact-widgets" id="impact-metrics">
+                        <div class="impact-item">
+                            <div class="impact-circle border-lime"><i data-lucide="tree-pine" class="icon-lime"></i>
+                            </div>
+                            <span class="impact-val" id="eq-trees">0</span>
+                            <span class="impact-lbl">Trees to Offset</span>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-circle border-orange"><i data-lucide="car-front" class="icon-orange"></i>
+                            </div>
+                            <span class="impact-val" id="eq-cars">0</span>
+                            <span class="impact-lbl">Cars Removed</span>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-circle border-white"><i data-lucide="plane" class="icon-white"></i></div>
+                            <span class="impact-val" id="eq-flights">0</span>
+                            <span class="impact-lbl">Flights Avoided</span>
+                        </div>
+                    </div>
+                    <div class="offset-action mt-2">
+                        <p class="text-sm">Estimated offset cost: <strong class="icon-lime">$<span
+                                    id="offset-cost">0</span></strong> via verified Gold Standard projects.</p>
+                        <button class="btn btn-secondary btn-sm mt-1">Purchase Offsets</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= WHAT-IF SCENARIOS ================= -->
+        <section id="scenarios" class="page-section hidden">
+            <div class="section-header">
+                <h2>SIMULATION ENGINE</h2>
+                <p>Run regression models and "what-if" scenarios to plan your reduction strategy.</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="card bento-card card-span-5 neo-brutalist br-card">
+                    <div class="card-header"><i data-lucide="sliders-horizontal" class="icon-lime"></i>
+                        <h3>Adjust Variables</h3>
+                    </div>
+                    <div class="slider-group">
+                        <label>Switch to Solar Energy (%)</label>
+                        <input type="range" id="sim-solar" min="0" max="100" value="0" class="custom-slider"
+                            oninput="updateSimulation()">
+                        <span class="slider-val" id="val-solar">0%</span>
+                    </div>
+                    <div class="slider-group">
+                        <label>Reduce Travel Intensity (%)</label>
+                        <input type="range" id="sim-travel" min="0" max="100" value="0" class="custom-slider"
+                            oninput="updateSimulation()">
+                        <span class="slider-val" id="val-travel">0%</span>
+                    </div>
+                    <div class="slider-group">
+                        <label>Improve Waste Recycling (%)</label>
+                        <input type="range" id="sim-waste" min="0" max="100" value="0" class="custom-slider"
+                            oninput="updateSimulation()">
+                        <span class="slider-val" id="val-waste">0%</span>
+                    </div>
+                </div>
+
+                <div class="card bento-card card-span-7">
+                    <div class="card-header"><i data-lucide="line-chart" class="icon-orange"></i>
+                        <h3>Projected Trajectory</h3>
+                    </div>
+                    <div class="chart-container-large">
+                        <canvas id="simChart"></canvas>
+                    </div>
+                    <div class="sim-results mt-1 flex-between">
+                        <div>
+                            <p class="text-sm text-muted">Current Path</p>
+                            <h4><span id="sim-current">0</span> kg</h4>
+                        </div>
+                        <div>
+                            <p class="text-sm text-muted">Simulated Path</p>
+                            <h4 class="icon-lime"><span id="sim-projected">0</span> kg</h4>
+                        </div>
+                        <div>
+                            <p class="text-sm text-muted">Net Savings</p>
+                            <h4 class="icon-orange"><span id="sim-savings">0</span> kg</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= REPORTS & ADMIN ================= -->
+        <section id="reports" class="page-section hidden">
+            <div class="section-header">
+                <h2>COMPLIANCE & EXPORT</h2>
+                <p>Generate ESG-aligned PDF reports and manage organizational data.</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="card bento-card card-span-6 premium-saas-card flex-center">
+                    <div class="report-badge">ESG READY</div>
+                    <i data-lucide="file-check-2" class="report-icon icon-lime"></i>
+                    <h3>Q3 Sustainability Report</h3>
+                    <p class="text-muted text-center max-w-sm mt-1 mb-2">Detailed breakdown including anomaly flags,
+                        regression modeling, and departmental analytics.</p>
+                    <button class="btn btn-primary btn-large btn-full glow-lime glow-shadow">
+                        <i data-lucide="download"></i> Download PDF
+                    </button>
+                    <p class="footnote mt-1">Logo and branding automatically injected.</p>
+                </div>
+
+                <div class="card bento-card card-span-6 neo-brutalist br-card">
+                    <div class="card-header"><i data-lucide="database" class="icon-orange"></i>
+                        <h3>Data Source Management</h3>
+                    </div>
+                    <div class="admin-modules">
+                        <div class="admin-module border-bottom pb-1 mb-1">
+                            <div class="flex-between">
+                                <div>
+                                    <h4>CSV Bulk Import</h4>
+                                    <p class="text-sm">Import historical utility data logs.</p>
+                                </div>
+                                <button class="btn btn-secondary btn-sm"><i data-lucide="upload"></i> Upload</button>
+                            </div>
+                        </div>
+                        <div class="admin-module border-bottom pb-1 mb-1">
+                            <div class="flex-between">
+                                <div>
+                                    <h4>Geo-Factor Settings</h4>
+                                    <p class="text-sm">Adjust emission factors by Country/Grid.</p>
+                                </div>
+                                <select class="input-capsule" style="width: auto; padding: 0.5rem 1rem;">
+                                    <option>USA (EPA)</option>
+                                    <option>UK (DEFRA)</option>
+                                    <option>EU (EEA)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="admin-module">
+                            <div class="flex-between">
+                                <div>
+                                    <h4>Role Access</h4>
+                                    <p class="text-sm">Admin vs Employee departmental tracking.</p>
+                                </div>
+                                <button class="btn btn-secondary btn-sm"><i data-lucide="users"></i> Manage</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ANOMALIES & AUDIT PAGE ================= -->
+        <section id="anomalies" class="page-section hidden">
+            <div class="section-header">
+                <h2>INTELLIGENT ANOMALY DETECTION</h2>
+                <p>Machine-learning driven statistical deviation logic highlighting unusual spikes and inconsistent
+                    reporting.</p>
+            </div>
+
+            <div class="bento-grid">
+                <!-- Anomaly Highlights -->
+                <div class="card bento-card card-span-7 neo-brutalist br-card highlight-br">
+                    <div class="card-header"><i data-lucide="siren" class="icon-orange pulse-anim"></i>
+                        <h3>System Alerts</h3>
+                    </div>
+                    <div class="insight-list">
+                        <ul>
+                            <li class="alert-item error">
+                                <strong><i data-lucide="alert-triangle" class="icon-orange"></i> High Severity Fuel
+                                    Spike</strong>
+                                <p class="text-sm">Detected a 45% abnormal increase in diesel fuel consumption logged
+                                    for transport vs baseline operational range.</p>
+                                <div class="action-btn mt-1"><button class="btn btn-secondary btn-sm">Investigate Route
+                                        Efficiency</button></div>
+                            </li>
+                            <li class="alert-item warning">
+                                <strong><i data-lucide="alert-circle" class="icon-lime"></i> Off-Hour Energy Usage
+                                    Detected</strong>
+                                <p class="text-sm">HVAC system operating at 90% load during non-working hours (Sat-Sun).
+                                    Evaluated deviation: 2Sigma.</p>
+                                <div class="action-btn mt-1"><button class="btn btn-secondary btn-sm">Implement Smart
+                                        Timers</button></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Live Audit Log -->
+                <div class="card bento-card card-span-5">
+                    <div class="card-header"><i data-lucide="history" class="icon-lime"></i>
+                        <h3>Immutable Audit Log</h3>
+                    </div>
+                    <div class="audit-timeline">
+                        <div class="audit-item">
+                            <i data-lucide="user-check" class="timeline-icon icon-lime"></i>
+                            <div class="audit-details">
+                                <p><strong>System Admin (Liya)</strong> input 2500 kWh</p>
+                                <span class="text-sm text-muted">Oct 14, 2026 - 14:03 PM</span>
+                            </div>
+                        </div>
+                        <div class="audit-item">
+                            <i data-lucide="refresh-cw" class="timeline-icon icon-orange"></i>
+                            <div class="audit-details">
+                                <p><strong>Automated API Sync</strong> resolved</p>
+                                <span class="text-sm text-muted">Oct 14, 2026 - 12:00 PM</span>
+                            </div>
+                        </div>
+                        <div class="audit-item">
+                            <i data-lucide="edit-3" class="timeline-icon icon-white"></i>
+                            <div class="audit-details">
+                                <p><strong>John Doe</strong> modified waste parameter</p>
+                                <span class="text-sm text-muted">Oct 12, 2026 - 09:12 AM</span>
+                            </div>
+                        </div>
+                        <div class="audit-item">
+                            <i data-lucide="shield-check" class="timeline-icon icon-lime"></i>
+                            <div class="audit-details">
+                                <p>Report <strong>Q3_Compliance.pdf</strong> generated</p>
+                                <span class="text-sm text-muted">Oct 01, 2026 - 16:45 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TARGETS & GOALS PAGE ================= -->
+        <section id="goals" class="page-section hidden">
+            <div class="section-header">
+                <h2>LONG-TERM SUSTAINABILITY PLANNER</h2>
+                <p>Set custom corporate ESG targets, track milestone countdowns, and evaluate predictive projections.
+                </p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="card bento-card card-span-12 neo-brutalist br-card">
+                    <div class="flex-between">
+                        <div>
+                            <h3 class="icon-lime">Target: 30% Reduction by 2030</h3>
+                            <p>Global Corporate NetZero Initiative Plan.</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm glow-lime"><i data-lucide="plus"></i> Add New
+                            Goal</button>
+                    </div>
+
+                    <div class="goals-tracker mt-2 border-top pt-2">
+                        <div class="goal-stats flex-between mb-1">
+                            <div>
+                                <h4 class="text-muted">Current Trajectory</h4>
+                                <h2>12.4%</h2>
+                            </div>
+                            <div>
+                                <h4 class="text-muted">Target Req.</h4>
+                                <h2 class="icon-orange">1.5% / mo</h2>
+                            </div>
+                            <div>
+                                <h4 class="text-muted">Deadline</h4>
+                                <h2>Dec 2030</h2>
+                            </div>
+                        </div>
+
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-track border-lime">
+                                <div class="progress-bar-fill bg-lime" style="width: 41%;"></div>
+                                <div class="milestone-marker" style="left: 25%;" title="Q1 Goal Reached"></div>
+                                <div class="milestone-marker pending" style="left: 50%;"></div>
+                                <div class="milestone-marker pending" style="left: 75%;"></div>
+                            </div>
+                            <div class="flex-between text-sm text-muted mt-1">
+                                <span>Start (2024 Base)</span>
+                                <span>30% Target Reached</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Adaptive Suggestion -->
+                    <div class="ai-suggestion-box mt-2 flex gap-1 items-start">
+                        <i data-lucide="brain-circuit" class="icon-orange pulse-anim"></i>
+                        <div>
+                            <h4>Adaptive Strategy Alert: Trajectory Slowing</h4>
+                            <p class="text-sm">Your projected 12 month path indicates you may miss your Q3 milestone by
+                                4%. Action: Optimize vehicle fleet logistics to make up the marginal net 4% difference
+                                in emissions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement Badges -->
+                <div class="card bento-card card-span-12">
+                    <div class="card-header"><i data-lucide="award" class="icon-lime"></i>
+                        <h3>Gamified Achievements</h3>
+                    </div>
+                    <div class="badges-grid"
+                        style="display:flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem;">
+                        <div class="badge-item flex-center opacity-full">
+                            <div class="badge-icon icon-lime border-lime glow-lime"
+                                style="padding:1rem; border-radius:50%; border:2px solid; margin-bottom: 0.5rem;"><i
+                                    data-lucide="leaf"></i></div>
+                            <p><strong>First Step</strong></p>
+                            <span class="text-sm text-muted">100kg Shifted</span>
+                        </div>
+                        <div class="badge-item flex-center opacity-full">
+                            <div class="badge-icon icon-teal border-white"
+                                style="padding:1rem; border-radius:50%; border:2px solid; margin-bottom: 0.5rem;"><i
+                                    data-lucide="droplets"></i></div>
+                            <p><strong>Aqua Warden</strong></p>
+                            <span class="text-sm text-muted">Optimized Water Usage</span>
+                        </div>
+                        <div class="badge-item flex-center opacity-half" style="opacity: 0.4;">
+                            <div class="badge-icon icon-text border-white"
+                                style="padding:1rem; border-radius:50%; border:2px dashed; margin-bottom: 0.5rem;"><i
+                                    data-lucide="sun"></i></div>
+                            <p><strong>Solar Shift</strong></p>
+                            <span class="text-sm text-muted">Locked - 20% Renewables</span>
+                        </div>
+                        <div class="badge-item flex-center opacity-half" style="opacity: 0.4;">
+                            <div class="badge-icon icon-text border-white"
+                                style="padding:1rem; border-radius:50%; border:2px dashed; margin-bottom: 0.5rem;"><i
+                                    data-lucide="stars"></i></div>
+                            <p><strong>Net Zero Hero</strong></p>
+                            <span class="text-sm text-muted">Locked - Goal Complete</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT PAGE ================= -->
+        <section id="about" class="page-section hidden">
+            <div class="section-header">
+                <h2>THE DECODE ENGINE</h2>
+                <p>Architecture, security, and our vision to decode climate complexity via analytics.</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="card bento-card card-span-12 hero-section"
+                    style="padding: 2rem; flex-direction: row; gap: 2rem;">
+                    <div>
+                        <h1 style="font-size: 3rem;">Vision to Realization</h1>
+                        <p class="hero-desc" style="max-width: 600px;">CarbonDecode isn't just a calculator; it's a
+                            living ecosystem designed to empower businesses and campuses to democratize sustainability.
+                            We ingest opaque utility data and transform it into an actionable, Neo-Brutalist transparent
+                            roadmap driving straight towards Net-Zero.</p>
+                    </div>
+                    <div>
+                        <i data-lucide="globe-2" class="huge-icon icon-lime pulse-anim"
+                            style="width:100px; height:100px;"></i>
+                    </div>
+                </div>
+
+                <div class="card bento-card card-span-6 br-card neo-brutalist">
+                    <div class="card-header"><i data-lucide="shield" class="icon-lime"></i>
+                        <h3>Security & Enterprise Privacy</h3>
+                    </div>
+                    <p>CarbonDecode utilizes enterprise-grade end-to-end telemetry encryption. We comply with strict
+                        GDPR, SOC2, and regional privacy frameworks. Ensuring your raw utility architecture and
+                        sustainability IP is strictly immutable via our locked audit logs.</p>
+                    <div class="mt-2 flex gap-1">
+                        <a href="#" class="link-text">Privacy Policy</a> | <a href="#" class="link-text">Terms of
+                            Service</a>
+                    </div>
+                </div>
+                <div class="card bento-card card-span-6">
+                    <div class="card-header"><i data-lucide="layers" class="icon-orange"></i>
+                        <h3>Scalable SaaS Architecture</h3>
+                    </div>
+                    <ul class="tech-list" style="list-style: none; display:flex; flex-direction:column; gap:0.5rem;">
+                        <li><strong>Frontend:</strong> Highly modular, SEO-optimized Javascript/HTML5/Vanilla CSS
+                            application ready for native compilation.</li>
+                        <li><strong>Data Vis:</strong> Hardware-accelerated Canvas interactions via Chart.js
+                            integration.</li>
+                        <li><strong>Deployment:</strong> Edge-network ready. Native configurations map fluidly to
+                            Vercel, Firebase, or AWS Amplify topologies.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
