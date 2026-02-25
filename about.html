@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Sustainalytics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-canvas: #0a0a0a;
+            --bg-bento: #161616;
+            --accent-lime: #ccff00;
+            --accent-orange: #ff5c00;
+            --border-radius: 32px;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .bento-card {
+            background-color: var(--bg-bento);
+            border-radius: var(--border-radius);
+            border: 1px solid #262626;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            border-color: #444;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.7);
+        }
+
+        .section-header {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+        }
+
+        /* Tech Stack Pills */
+        .tech-pill {
+            background: #0a0a0a;
+            border: 1px solid #262626;
+            border-radius: 100px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tech-pill:hover {
+            border-color: var(--accent-lime);
+            background: rgba(204, 255, 0, 0.05);
+        }
+
+        /* Sidebar Styling */
+        .sidebar-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            color: #525252;
+            transition: 0.2s;
+        }
+
+        .sidebar-icon.active {
+            background-color: var(--accent-lime);
+            color: black;
+        }
+
+        /* Glowing Effects */
+        .glow-orange { color: var(--accent-orange); text-shadow: 0 0 15px rgba(255, 92, 0, 0.3); }
+        .glow-lime { color: var(--accent-lime); text-shadow: 0 0 15px rgba(204, 255, 0, 0.3); }
+
+        .future-grid {
+            background-image: radial-gradient(#262626 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .stroke-text {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="flex">
+
+    <!-- Sidebar -->
+    <aside class="fixed left-0 top-0 h-screen w-20 border-r border-white/5 flex flex-col items-center py-8 gap-8 z-50 bg-black">
+        <div class="w-10 h-10 bg-lime-400 rounded-full mb-4"></div>
+        <div class="sidebar-icon">
+             <a href="index.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+             </a>
+        </div>
+        <div class="sidebar-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 17-5 5-5-5"/><path d="m7 7 5-5 5 5"/></svg>
+        </div>
+        <div class="sidebar-icon active">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        </div>
+        <div class="mt-auto sidebar-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+    </aside>
+
+    <main class="ml-20 w-full px-8 py-12 max-w-7xl mx-auto">
+        <!-- Hero Section -->
+        <header class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <div class="h-px w-12 bg-lime-400"></div>
+                <span class="text-xs font-black uppercase tracking-[0.3em] text-lime-400">About Section</span>
+            </div>
+            <h1 class="section-header text-6xl lg:text-8xl leading-none mb-6">
+                OUR CORE <br><span class="italic text-lime-400 text-stroke !text-transparent">IDEOLOGY.</span>
+            </h1>
+            <p class="text-xl text-white/40 max-w-2xl leading-relaxed">
+                We believe that environmental responsibility shouldn't be a luxury. Sustainalytics was built to bridge the gap between high-level climate science and everyday business operations.
+            </p>
+        </header>
+
+        <!-- Bento Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            
+            <!-- Problem Statement -->
+            <div class="bento-card md:col-span-8 p-10">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <span class="text-[10px] font-bold text-orange-500 uppercase tracking-widest mb-2 block">The Challenge</span>
+                        <h2 class="section-header text-4xl">DECODING COMPLEXITY</h2>
+                    </div>
+                    <div class="w-12 h-12 rounded-full border border-orange-500/30 flex items-center justify-center text-orange-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                    </div>
+                </div>
+                <p class="text-white/60 text-lg leading-relaxed">
+                    Most organizations fail to meet sustainability goals not due to a lack of will, but a <span class="text-white font-bold">lack of clarity</span>. Existing tools are either oversimplified "calculators" that lack depth, or enterprise systems that require a dedicated team of experts. We provide the middle ground: <span class="text-lime-400 font-bold">High-fidelity data with low-friction entry.</span>
+                </p>
+            </div>
+
+            <!-- Stats/Impact Card -->
+            <div class="bento-card md:col-span-4 p-8 bg-lime-400 text-black">
+                <h3 class="font-black text-6xl mb-2 tracking-tighter">01.</h3>
+                <p class="font-black uppercase text-xl leading-tight mb-8">Mission <br>Statement</p>
+                <p class="text-sm font-bold opacity-80 leading-snug">
+                    To democratize carbon intelligence for the 99% of organizations currently priced out of the climate conversation.
+                </p>
+            </div>
+
+            <!-- Why Matters -->
+            <div class="bento-card md:col-span-5 p-10 flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] font-bold text-lime-400 uppercase tracking-widest mb-4 block">The Value</span>
+                    <h2 class="section-header text-3xl mb-6">RADICAL <br>TRANSPARENCY</h2>
+                    <p class="text-white/40 text-sm leading-relaxed mb-6">
+                        We don't just give you a number. We show you the "Why" behind the carbon footprint, mapping emissions to specific operational habits.
+                    </p>
+                </div>
+                <div class="space-y-3">
+                    <div class="h-1 bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-lime-400 w-3/4"></div>
+                    </div>
+                    <p class="text-[10px] font-black uppercase text-white/20">Data Accuracy Confidence</p>
+                </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="bento-card md:col-span-7 p-10">
+                <div class="flex flex-col h-full justify-between">
+                    <div>
+                        <h2 class="section-header text-3xl mb-2 uppercase">Built for Scale</h2>
+                        <p class="text-white/40 text-sm mb-8">Leveraging cutting-edge architecture to ensure real-time processing of complex environmental datasets.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <div class="tech-pill">Next.js 14</div>
+                        <div class="tech-pill">Vertex AI</div>
+                        <div class="tech-pill">Edge Functions</div>
+                        <div class="tech-pill">D3.js Visualization</div>
+                        <div class="tech-pill">ISO 14064 Compliance</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Future Scope & Methodology -->
+            <div class="bento-card md:col-span-12 p-10 future-grid">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <div class="lg:col-span-1">
+                        <h2 class="section-header text-4xl mb-4">OUR <br>METHOD</h2>
+                        <p class="text-white/60 text-sm leading-relaxed mb-6">
+                            Sustainalytics uses a proprietary aggregation engine that cross-references user input with the latest EPA and GHG Protocol emission factors.
+                        </p>
+                        <button class="bg-white text-black px-6 py-3 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-lime-400 transition">
+                            View Methodology Whitepaper
+                        </button>
+                    </div>
+                    <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-6 bg-black/60 border border-white/5 rounded-3xl group hover:border-lime-400/50 transition">
+                            <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center mb-4 group-hover:bg-lime-400 group-hover:text-black transition">01</div>
+                            <p class="text-white font-black uppercase text-xs mb-2">Automated Collection</p>
+                            <p class="text-white/30 text-[10px]">Syncing utility bills and travel logs directly through secure API endpoints.</p>
+                        </div>
+                        <div class="p-6 bg-black/60 border border-white/5 rounded-3xl group hover:border-orange-500/50 transition">
+                            <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:text-black transition">02</div>
+                            <p class="text-white font-black uppercase text-xs mb-2">AI Optimization</p>
+                            <p class="text-white/30 text-[10px]">Machine learning models that suggest the most cost-effective reduction strategies.</p>
+                        </div>
+                        <div class="p-6 bg-black/60 border border-white/5 rounded-3xl group hover:border-white transition">
+                            <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center mb-4 group-hover:bg-white group-hover:text-black transition">03</div>
+                            <p class="text-white font-black uppercase text-xs mb-2">Peer Benchmarking</p>
+                            <p class="text-white/30 text-[10px]">Comparing your footprint against industry standards to find competitive advantages.</p>
+                        </div>
+                        <div class="p-6 bg-black/60 border border-white/5 rounded-3xl group hover:border-lime-400/50 transition">
+                            <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center mb-4 group-hover:bg-lime-400 group-hover:text-black transition">04</div>
+                            <p class="text-white font-black uppercase text-xs mb-2">Certified Reporting</p>
+                            <p class="text-white/30 text-[10px]">One-click exports ready for stakeholder meetings and regulatory compliance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team/Vision Quote -->
+        <section class="mt-16 text-center bento-card p-16 border-white/5">
+            <h2 class="section-header text-2xl lg:text-4xl mb-8 max-w-4xl mx-auto italic">
+                "Sustainability shouldn't be a box you check once a year. It should be a live pulse that guides every business decision."
+            </h2>
+            <div class="flex items-center justify-center gap-4">
+                <div class="w-12 h-12 bg-white/10 rounded-full border border-white/20"></div>
+                <div class="text-left">
+                    <p class="font-black uppercase text-xs">The Founders</p>
+                    <p class="text-[10px] text-white/40 uppercase tracking-widest">Sustainalytics Team 2024</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-16 flex flex-col md:flex-row justify-between items-center py-8 border-t border-white/5">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-lime-400 rounded-full"></div>
+                <span class="font-black text-sm uppercase">Sustainalytics Engine</span>
+            </div>
+            <div class="flex gap-8 mt-4 md:mt-0">
+                 <button class="text-[10px] font-black uppercase text-white/40 hover:text-white transition">Terms of Service</button>
+                 <button class="text-[10px] font-black uppercase text-white/40 hover:text-white transition">Privacy Policy</button>
+                 <button class="text-[10px] font-black uppercase text-white/40 hover:text-white transition">Press Kit</button>
+            </div>
+        </footer>
+    </main>
+
+</body>
+</html>

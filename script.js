@@ -64,6 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
+    // Bind click events to all nav buttons
+    navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            navigateTo(btn.dataset.target);
+        });
+    });
+
     // --- 4. Authentication Logic ---
     window.handleAuth = function (event) {
         event.preventDefault(); // Prevent form submission
